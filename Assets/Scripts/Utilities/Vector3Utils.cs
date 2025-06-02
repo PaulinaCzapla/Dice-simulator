@@ -12,7 +12,7 @@ namespace Utilities
                 Mathf.Clamp(value.z, min.z, max.z)
             );
         }
-        
+
         public static Vector3 Subtract(this Vector3 vector, float value)
         {
             return new Vector3(vector.x - value, vector.y - value, vector.z - value);

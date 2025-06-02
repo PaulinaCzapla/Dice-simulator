@@ -1,5 +1,4 @@
-using System;
-using DiceSystem;
+using Dice;
 using Startup.Data;
 using UnityEngine;
 
@@ -18,13 +17,11 @@ namespace Startup
                 .WithWalls(levelData.WallPrefab)
                 .WithCeiling(levelData.WallPrefab)
                 .Build();
-            
+
             var dice = Instantiate(dicePrefab, levelData.StartPosition, Quaternion.identity);
 
             if (dice.TryGetComponent<DiceBoundsLimiter>(out var diceBoundsLimiter))
-            {
                 diceBoundsLimiter.SetBounds(levelData.EnvironmentBounds);
-            }
         }
     }
 }

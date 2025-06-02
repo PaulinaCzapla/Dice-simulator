@@ -6,14 +6,14 @@ namespace Dice
     public sealed class DiceBoundsLimiter : MonoBehaviour
     {
         [SerializeField] private float boundsOffset = 1f;
-        
+
         private Bounds _limitBounds;
 
         public void SetBounds(Bounds environmentBounds)
         {
             var environmentBoundsSize = environmentBounds.size;
 
-            _limitBounds = new Bounds(environmentBounds.center, 
+            _limitBounds = new Bounds(environmentBounds.center,
                 environmentBoundsSize.Subtract(boundsOffset));
         }
 
@@ -30,4 +30,3 @@ namespace Dice
         }
     }
 }
-
