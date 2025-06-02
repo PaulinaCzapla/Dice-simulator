@@ -1,20 +1,22 @@
-﻿using NormalsAnalyzer;
+﻿using UnityEditor;
 using UnityEngine;
-using UnityEditor;
 
-[CustomEditor(typeof(MeshNormalsAnalyzer))]
-public class MeshNormalsAnalyzerEditor : Editor
+namespace NormalsAnalyzer.Editor
 {
-    public override void OnInspectorGUI()
+    [CustomEditor(typeof(MeshNormalsAnalyzer))]
+    public class MeshNormalsAnalyzerEditor : UnityEditor.Editor
     {
-        DrawDefaultInspector();
-
-        MeshNormalsAnalyzer analyzer = (MeshNormalsAnalyzer)target;
-
-        if (GUILayout.Button("Analyze Normals"))
+        public override void OnInspectorGUI()
         {
-            analyzer.AnalyzeNormals();
-            EditorUtility.SetDirty(analyzer);
+            DrawDefaultInspector();
+
+            var analyzer = (MeshNormalsAnalyzer) target;
+
+            if (GUILayout.Button("Analyze Normals"))
+            {
+                analyzer.AnalyzeNormals();
+                EditorUtility.SetDirty(analyzer);
+            }
         }
     }
 }
