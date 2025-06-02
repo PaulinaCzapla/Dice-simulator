@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Dice
 {
     [RequireComponent(typeof(Rigidbody))]
-    public class DiceDraggable : MonoBehaviour, IDraggable
+    public class DiceThrowable : MonoBehaviour, IThrowable,IDraggable, ITrackable
     {
         [SerializeField] private DraggableConfig config;
         [SerializeField] private DiceBoundsLimiter boundsLimiter;
@@ -21,12 +21,25 @@ namespace Dice
         private Vector2 _lastVelocity;
         private Vector3 _smoothedTorque = Vector3.zero;
         private Vector3 _torqueVelocity = Vector3.zero;
+
+        public Vector3 Position => _rb.position;
+        public Quaternion Rotation => _rb.rotation;
+        public Vector3 Velocity => _rb.velocity;
+        public Vector3 AngularVelocity => _rb.angularVelocity;
+        private ThrowTracker _tracker;
         
         private void Awake()
         {
             _rb = GetComponent<Rigidbody>();
+            _tracker = GetComponent<ThrowTracker>();
             _initialPosition = _rb.position;
             _initialRotation = _rb.rotation;
+        }
+
+        public void Throw(Vector3 velocity, Vector3 angularVelocity)
+        {
+            _rb.velocity = velocity;
+            _rb.angularVelocity = angularVelocity;
         }
 
         public void StartDrag()
@@ -41,9 +54,16 @@ namespace Dice
         {
             CursorController.Show();
             _rb.useGravity = true;
-            _rb.velocity = _rb.velocity * config.DropForceMultiplier + new Vector3(0, _rb.velocity.z * DROP_Y_VELOCITY_MULTIPLIER, 0);
+            var velocity = _rb.velocity * config.DropForceMultiplier + new Vector3(0, _rb.velocity.z * DROP_Y_VELOCITY_MULTIPLIER, 0);
             _rb.angularVelocity = Vector3.zero;
-            _rb.angularVelocity = _rb.velocity * config.DropAngularVelocityMultiplier;
+            var angularVelocity = _rb.velocity * config.DropAngularVelocityMultiplier;
+            
+            Throw(velocity, angularVelocity);
+            
+            if (_tracker != null)
+            {
+                _tracker.StartTracking(this);
+            }
         }
 
         public void Drag(Vector2 screenPosition, Vector2 inputVelocity)
