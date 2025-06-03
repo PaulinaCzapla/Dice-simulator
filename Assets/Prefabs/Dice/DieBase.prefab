@@ -1895,11 +1895,9 @@ GameObject:
   - component: {fileID: 5206693937915044402}
   - component: {fileID: 8246525275934727754}
   - component: {fileID: 2340855486627204902}
+  - component: {fileID: 126300185379480438}
   - component: {fileID: 6388251758666766512}
   - component: {fileID: 592939483856858127}
-  - component: {fileID: 126300185379480438}
-  - component: {fileID: 7383899153678231078}
-  - component: {fileID: 5513106893876325458}
   - component: {fileID: 8332688300456595221}
   m_Layer: 6
   m_Name: DieBase
@@ -2205,33 +2203,6 @@ MonoBehaviour:
     - {x: 0, y: 0.32079533, z: 0.73590964}
     - {x: -0.29818165, y: 0.49858332, z: 0.6260306}
     centroid: {x: -0.000000011920929, y: 0.41777438, z: 0.6759734}
---- !u!114 &6388251758666766512
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8438707760800728792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f798bcab960f4533aa1ae6a18278108d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 4d6a97ac44f206e47971c084da3bee74, type: 2}
-  boundsLimiter: {fileID: 592939483856858127}
---- !u!114 &592939483856858127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8438707760800728792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ecfc1bd5abe74e40b97191c9ee5a2da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boundsOffset: 1.9
 --- !u!114 &126300185379480438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2306,7 +2277,7 @@ MonoBehaviour:
     centroid: {x: -0.000000011920929, y: 0.41777438, z: 0.6759734}
     normal: {x: -0.0000003306095, y: 0.5257314, z: 0.85065067}
     spawnedPresentation: {fileID: 6357096285508020878}
---- !u!114 &7383899153678231078
+--- !u!114 &6388251758666766512
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2315,15 +2286,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8438707760800728792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed1614a9aea6496cae23eaff0d48f6aa, type: 3}
+  m_Script: {fileID: 11500000, guid: f798bcab960f4533aa1ae6a18278108d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stopThreshold: 0.05
-  minStopTime: 0.5
-  OnThrowFinished:
-    m_PersistentCalls:
-      m_Calls: []
---- !u!114 &5513106893876325458
+  config: {fileID: 11400000, guid: 4d6a97ac44f206e47971c084da3bee74, type: 2}
+  boundsLimiter: {fileID: 592939483856858127}
+--- !u!114 &592939483856858127
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2332,12 +2300,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 8438707760800728792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5938f2591a564ac380283603d75b918e, type: 3}
+  m_Script: {fileID: 11500000, guid: 5ecfc1bd5abe74e40b97191c9ee5a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minDistance: 0.5
-  minAngularMovement: 90
-  faceUpThreshold: 0.9
+  boundsOffset: 1.9
 --- !u!114 &8332688300456595221
 MonoBehaviour:
   m_ObjectHideFlags: 0
