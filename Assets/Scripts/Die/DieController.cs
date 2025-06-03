@@ -5,38 +5,36 @@ using UnityEngine.Events;
 namespace Die
 {
     [RequireComponent(typeof(DieValuesHolder), typeof(IThrowable))]
-    public class DieController : MonoBehaviour
+    public sealed class DieController : MonoBehaviour
     {
         private DieValuesHolder _valuesHolder;
-        private IThrowable _throwable;
         private ThrowTracker _throwTracker;
         private DieLandingValidator _dieLandingValidator;
 
-        public UnityEvent<DieController> OnThrew { get; private set; } = new();
-        public UnityEvent<DieValue, DieController> OnDieRollSuccess { get; private set; } = new();
-        public UnityEvent<DieController> OnDieRollFailed { get; private set; } = new();
-        public IThrowable Throwable => _throwable;
+        public UnityEvent<DieController> OnThrew { get; } = new();
+        public UnityEvent<int, DieController> OnDieRollSuccess { get; } = new();
+        public UnityEvent<DieController> OnDieRollFailed { get; } = new();
+        public IThrowable Throwable { get; private set; }
 
         private void Awake()
         {
-            _throwable = GetComponent<IThrowable>();
+            Throwable = GetComponent<IThrowable>();
             _valuesHolder = GetComponent<DieValuesHolder>();
         }
 
         private void OnEnable()
         {
-            _throwable.OnThrew.AddListener(Threw);
+            Throwable.OnThrew.AddListener(Threw);
         }
 
         private void OnDisable()
         {
-            _throwable.OnThrew.AddListener(Threw);
+            Throwable.OnThrew.AddListener(Threw);
         }
 
         private void FixedUpdate()
         {
-            if (_throwTracker != null)
-                _throwTracker.TrackUpdate();
+            _throwTracker?.TrackUpdate();
         }
 
         private void Threw(ITrackable trackable)
@@ -50,11 +48,12 @@ namespace Die
 
         private void ThrowFinished(float accumulatedVelocity, float accumulatedAngularVelocity)
         {
-            var resultValue = _dieLandingValidator.Validate(transform, accumulatedVelocity, accumulatedAngularVelocity);
+            var resultValue = _dieLandingValidator.Validate(transform, 
+                accumulatedVelocity, accumulatedAngularVelocity);
 
-            if (resultValue)
+            if (resultValue.HasValue)
             {
-                OnDieRollSuccess.Invoke(resultValue, this);
+                OnDieRollSuccess.Invoke(resultValue.Value, this);
             }
             else
             {

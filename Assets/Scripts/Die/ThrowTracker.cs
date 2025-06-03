@@ -3,10 +3,10 @@ using UnityEngine.Events;
 
 namespace Die
 {
-    public class ThrowTracker //: MonoBehaviour
+    public sealed class ThrowTracker
     {
-        private const float stopThreshold = 0.05f;
-        private const float minStopTime = 0.5f;
+        private const float STOP_THRESHOLD = 0.05f;
+        private const float MIN_STOP_TIME = 0.5f;
 
         private ITrackable _trackable;
         private Vector3 _lastPosition;
@@ -16,7 +16,7 @@ namespace Die
         private float _stillTime;
         private bool _tracking;
         
-        public UnityEvent<float, float> OnThrowFinished = new(); // totalDistance, totalRotation
+        public readonly UnityEvent<float, float> OnThrowFinished = new();
 
         public void StartTracking(ITrackable trackable)
         {
@@ -33,7 +33,9 @@ namespace Die
         public void TrackUpdate()
         {
             if (!_tracking || _trackable == null)
+            {
                 return;
+            }
 
             var currentPos = _trackable.Position;
             var currentRot = _trackable.Rotation;
@@ -44,15 +46,19 @@ namespace Die
             _lastPosition = currentPos;
             _lastRotation = currentRot;
 
-            bool isStill = _trackable.Velocity.magnitude < stopThreshold &&
-                           _trackable.AngularVelocity.magnitude < stopThreshold;
+            var isStill = _trackable.Velocity.magnitude < STOP_THRESHOLD &&
+                           _trackable.AngularVelocity.magnitude < STOP_THRESHOLD;
 
             if (isStill)
+            {
                 _stillTime += Time.deltaTime;
+            }
             else
+            {
                 _stillTime = 0f;
+            }
 
-            if (_stillTime >= minStopTime)
+            if (_stillTime >= MIN_STOP_TIME)
             {
                 _tracking = false;
                 OnThrowFinished.Invoke(_accumulatedDistance, _accumulatedRotation);

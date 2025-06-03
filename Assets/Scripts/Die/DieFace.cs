@@ -7,19 +7,17 @@ using UnityEngine;
 namespace Die
 {
     [Serializable]
-    public class DieFace
+    public sealed class DieFace
     {
         [SerializeField, ReadOnly] private string identifier;
-        [SerializeField] private DieValue value;
+        [SerializeField] private DieFaceValue faceValue;
         
         [SerializeField, HideInInspector] private Vector3 centroid;
         [SerializeField, HideInInspector] private Vector3 normal;
         [SerializeField, HideInInspector] private GameObject spawnedPresentation;
 
-        public DieValue Value => value;
+        public DieFaceValue FaceValue => faceValue;
         public Vector3 Normal => normal;
-
-        public string Identifier => identifier;
         public Vector3 Centroid => centroid;
 
         public GameObject SpawnedPresentation
@@ -35,7 +33,7 @@ namespace Die
             this.identifier = identifier;
         }
 
-        public void DrawGizmos()
+        public void OnDrawGizmos()
         {
             Handles.Label(centroid, identifier);
         }

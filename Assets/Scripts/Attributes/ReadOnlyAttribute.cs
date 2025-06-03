@@ -1,7 +1,6 @@
-﻿namespace Attributes
+﻿using UnityEngine;
+
+namespace Attributes
 {
-    using UnityEngine;
-
     public class ReadOnlyAttribute : PropertyAttribute { }
-
 }

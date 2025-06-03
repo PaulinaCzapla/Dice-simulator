@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
+using Utilities;
 
 namespace NormalsAnalyzer
 {
     [ExecuteAlways]
     [RequireComponent(typeof(MeshFilter))]
-    public class MeshNormalsAnalyzer : MonoBehaviour
+    public sealed class MeshNormalsAnalyzer : MonoBehaviour
     {
         [Header("Analyze parameters")] 
         [Tooltip("Minimal surface for given normal.")] 
@@ -27,12 +26,16 @@ namespace NormalsAnalyzer
         private void OnDrawGizmosSelected()
         {
             if (foundNormals == null || foundNormals.Count == 0)
+            {
                 return;
+            }
 
             Gizmos.color = Color.cyan;
 
             foreach (var entry in foundNormals)
-                entry.DrawGizmos(transform);
+            {
+                entry.OnDrawGizmos(transform);
+            }
         }
 
         [ContextMenu("Analyze Normals")]
@@ -80,7 +83,6 @@ namespace NormalsAnalyzer
             {
                 var triangleList = normalToTriangle.Value;
                 var vertexSet = new HashSet<Vector3>(new ApproxVector3Comparer(normalTolerance));
-                var triangleCenters = new List<Vector3>();
                 var totalArea = 0f;
 
                 foreach (var (v0, v1, v2) in triangleList)
@@ -88,19 +90,15 @@ namespace NormalsAnalyzer
                     vertexSet.Add(v0);
                     vertexSet.Add(v1);
                     vertexSet.Add(v2);
-                    triangleCenters.Add((v0 + v1 + v2) / 3f);
-                    totalArea += CalculateTriangleArea(v0, v1, v2);
+                    totalArea += Vector3Utils.CalculateTriangleArea(v0, v1, v2);
                 }
 
                 if (totalArea >= minSurface)
-                    foundNormals.Add(new NormalEntry
-                        (normalToTriangle.Key.normalized, new List<Vector3>(vertexSet), totalArea, triangleCenters));
+                {
+                    foundNormals.Add(
+                        new NormalEntry(normalToTriangle.Key.normalized, new List<Vector3>(vertexSet)));
+                }
             }
-        }
-
-        private float CalculateTriangleArea(Vector3 v0, Vector3 v1, Vector3 v2)
-        {
-            return Vector3.Cross(v1 - v0, v2 - v0).magnitude * 0.5f;
         }
     }
 }

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Die;
-using Die.Data;
 using GameManagement.Startup;
 using InputManagement;
 using UI;
@@ -11,27 +9,28 @@ using Random = UnityEngine.Random;
 
 namespace GameManagement
 {
-    public class GameManager : MonoBehaviour
+    public sealed class GameManager : MonoBehaviour
     {
+        private const string UNDEFINED_ERROR = "Undefined";
+
         [SerializeField] private List<Vector3> possibleRollVelocities;
         [SerializeField] private List<Vector3> possibleRollAngularVelocities;
-        
         [SerializeField] private Bootstrap bootstrap;
         [SerializeField] private HudUI hud;
 
         private List<DieController> _diceOnScene;
 
         private int _resultsTotal;
-        private int _finishedDiceCounter = 0;
+        private int _finishedDiceCounter;
         private bool _anyFailed;
-        private int _diceThrewCount =0;
+        private int _diceThrewCount;
         private int _resultSum;
         
         private void Awake()
         {
             bootstrap.BuildMap();
-            hud.UpdateResult("");
-            hud.UpdateTotal("");
+            hud.UpdateResult(string.Empty);
+            hud.UpdateTotal(string.Empty);
         }
         
         private void OnEnable()
@@ -66,7 +65,7 @@ namespace GameManagement
             }
         }
         
-        private void DieThrew(DieController die)
+        private void DieThrew(DieController dieController)
         {
             InputHandler.InputBlocked = true;
 
@@ -74,25 +73,37 @@ namespace GameManagement
             hud.UpdateResult("?");
         }
 
-        private void DieRollFailed(DieController die)
+        private void DieRollFailed(DieController dieController)
         {
             _finishedDiceCounter++;
             _anyFailed = true;
             if (_finishedDiceCounter.Equals(_diceThrewCount))
+            {
                 FailedResult();
+            }
         }
-        private void DieRollSuccess(DieValue value, DieController die)
+        private void DieRollSuccess(int faceValue, DieController die)
         {
             _finishedDiceCounter++;
-            _resultSum += value.Value;
-            if (_finishedDiceCounter.Equals(_diceThrewCount))
-                if (_anyFailed) FailedResult(); 
-                else SuccessResult(_resultSum);
+            _resultSum += faceValue;
+            if (!_finishedDiceCounter.Equals(_diceThrewCount))
+            {
+                return;
+            }
+            
+            if (_anyFailed)
+            {
+                FailedResult();
+            }
+            else
+            {
+                SuccessResult(_resultSum);
+            }
         }
 
         private void FailedResult()
         {
-            hud.UpdateResult("-");
+            hud.UpdateResult(UNDEFINED_ERROR);
             PrepareForNextRoll();
         }
 

@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace NormalsAnalyzer
 {
-    public class ApproxVector3Comparer : IEqualityComparer<Vector3>
+    public sealed class ApproxVector3Comparer : IEqualityComparer<Vector3>
     {
-        private readonly float tolerance;
+        private readonly float _tolerance;
 
         public ApproxVector3Comparer(float tolerance)
         {
-            this.tolerance = tolerance;
+            _tolerance = tolerance;
         }
 
         public bool Equals(Vector3 a, Vector3 b)
         {
-            return Vector3.SqrMagnitude(a - b) < tolerance * tolerance;
+            return Vector3.SqrMagnitude(a - b) < _tolerance * _tolerance;
         }
 
         public int GetHashCode(Vector3 obj)

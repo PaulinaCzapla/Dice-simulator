@@ -3,24 +3,25 @@ using UnityEngine;
 
 namespace Interactions
 {
-    public class DraggableRaycaster : MonoBehaviour
+    public sealed class DraggableRaycaster : MonoBehaviour
     {
         [SerializeField] private LayerMask raycastMask;
+        
         private IDraggable _currentDraggable;
-
         private InputHandler _inputHandler;
 
         private void Awake()
         {
             _inputHandler = FindObjectOfType<InputHandler>();
             if (_inputHandler == null)
+            {
                 enabled = false;
+            }
         }
 
         private void FixedUpdate()
         {
-            if (_currentDraggable != null)
-                _currentDraggable.Drag(_inputHandler.MouseScreenPosition, _inputHandler.MouseVelocity);
+            _currentDraggable?.Drag(_inputHandler.MouseScreenPosition, _inputHandler.MouseVelocity);
         }
 
         private void OnEnable()

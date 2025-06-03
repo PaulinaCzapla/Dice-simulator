@@ -19,12 +19,14 @@ namespace GameManagement.Startup
                 .WithCeiling(levelData.WallPrefab)
                 .Build();
 
-            Vector3 offset = Vector3.zero;
+            var offset = Vector3.zero;
             foreach (var prefab in dicePrefabs)
             {
                 var dice = Instantiate(prefab, levelData.StartPosition + offset, Quaternion.identity);
                 if (dice.TryGetComponent<DieBoundsLimiter>(out var diceBoundsLimiter))
-                                diceBoundsLimiter.SetBounds(levelData.EnvironmentBounds);
+                {
+                    diceBoundsLimiter.SetBounds(levelData.EnvironmentBounds);
+                }
                 offset += new Vector3(2, 0, 2);
             }
         }

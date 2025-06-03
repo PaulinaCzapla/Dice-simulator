@@ -13,8 +13,7 @@ namespace Die
         {
             var environmentBoundsSize = environmentBounds.size;
 
-            _limitBounds = new Bounds(environmentBounds.center,
-                environmentBoundsSize.Subtract(boundsOffset));
+            _limitBounds = new Bounds(environmentBounds.center, environmentBoundsSize.Subtract(boundsOffset));
         }
 
         public bool IsLimitedByWalls(Vector3 nextPosition, out Vector3 clampedPosition)

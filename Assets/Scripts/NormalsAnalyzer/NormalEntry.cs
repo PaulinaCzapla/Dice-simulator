@@ -5,7 +5,7 @@ using UnityEngine;
 namespace NormalsAnalyzer
 {
     [Serializable]
-    public class NormalEntry
+    public sealed class NormalEntry
     {
         [Attributes.ReadOnly]
         [SerializeField]
@@ -15,14 +15,6 @@ namespace NormalsAnalyzer
         [SerializeField]
         private List<Vector3> vertices;
         
-        [Attributes.ReadOnly]
-        [SerializeField]
-        private float surfaceArea;
-
-        [HideInInspector] 
-        [SerializeField]
-        private List<Vector3> triangleCenters;
-
         [HideInInspector] 
         [SerializeField] 
         private Vector3 centroid;
@@ -43,46 +35,36 @@ namespace NormalsAnalyzer
             }
         }
 
-        public float SurfaceArea
-        {
-            get => surfaceArea;
-            set => surfaceArea = value;
-        }
-
-        public List<Vector3> TriangleCenters
-        {
-            get => triangleCenters;
-            set => triangleCenters = value;
-        }
-
         public Vector3 Centroid => centroid;
         
-        public NormalEntry(Vector3 normal, List<Vector3> vertices, float surfaceArea, List<Vector3> triangleCenters)
+        public NormalEntry(Vector3 normal, List<Vector3> vertices)
         {
             this.normal = normal;
             this.vertices = vertices;
-            this.surfaceArea = surfaceArea;
-            this.triangleCenters = triangleCenters;
             RecalculateCentroid();
         }
 
         private void RecalculateCentroid()
         {
             centroid = Vector3.zero;
-            
+
             foreach (var v in Vertices)
+            {
                 centroid += v;
+            }
             
             centroid /= Vertices.Count;
         }
 
-        public void DrawGizmos(Transform transform)
+        public void OnDrawGizmos(Transform transform)
         {
             if (Vertices == null || Vertices.Count == 0)
+            {
                 return;
+            }
             
-            Vector3 worldCentroid = transform.TransformPoint(Centroid);
-            Vector3 worldNormal = transform.TransformDirection(Normal);
+            var worldCentroid = transform.TransformPoint(Centroid);
+            var worldNormal = transform.TransformDirection(Normal);
             
             Gizmos.DrawSphere(worldCentroid, 0.02f);
             Gizmos.DrawRay(worldCentroid, worldNormal * 0.1f);
