@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using Attributes;
-using Dice.Data;
+﻿using System.Collections.Generic;
 using NormalsAnalyzer;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-namespace Dice
+namespace Die
 {
     [RequireComponent(typeof(MeshNormalsAnalyzer))]
-    public class DiceValuesHolder : MonoBehaviour
+    public class DieValuesHolder : MonoBehaviour
     {
         [SerializeField]
         [HideInInspector]
         private MeshNormalsAnalyzer meshNormalsAnalyzer;
 
         [SerializeField]
-        private List<DiceFace> diceFaces = new();
+        private List<DieFace> diceFaces = new();
 
-        public List<DiceFace> DiceFaces => diceFaces;
+        public List<DieFace> DiceFaces => diceFaces;
         
         private void Reset()
         {
@@ -36,7 +33,7 @@ namespace Dice
             int i = 1;
             foreach (var normal in meshNormalsAnalyzer.FoundNormals)
             {
-                diceFaces.Add(new DiceFace(normal.Normal, normal.Centroid, $"face {i}"));
+                diceFaces.Add(new DieFace(normal.Normal, normal.Centroid, $"face {i}"));
                 i++;
             }
             EditorUtility.SetDirty(this);
@@ -58,7 +55,7 @@ namespace Dice
                     textObject.transform.rotation = Quaternion.LookRotation(face.Normal);
                     var textMesh = textObject.AddComponent<TextMeshPro>();
 
-                    textMesh.text = face.Value.Text;
+                    textMesh.text = face.Value.DisplayName;
                     textMesh.fontSize = face.Value.FontSize;
                     textMesh.alignment = TextAlignmentOptions.Center;
                     face.SpawnedPresentation = textObject;

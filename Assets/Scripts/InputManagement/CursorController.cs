@@ -6,7 +6,7 @@ namespace InputManagement
     {
         public static void Hide()
         {
-            Cursor.visible = false;
+           // Cursor.visible = false;
         }
 
         public static void Show()

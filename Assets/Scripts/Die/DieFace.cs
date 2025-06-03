@@ -1,22 +1,22 @@
 ﻿using System;
 using Attributes;
-using Dice.Data;
+using Die.Data;
 using UnityEditor;
 using UnityEngine;
 
-namespace Dice
+namespace Die
 {
     [Serializable]
-    public class DiceFace
+    public class DieFace
     {
         [SerializeField, ReadOnly] private string identifier;
-        [SerializeField] private DiceValue value;
+        [SerializeField] private DieValue value;
         
-        [SerializeField] private Vector3 centroid;
+        [SerializeField, HideInInspector] private Vector3 centroid;
         [SerializeField, HideInInspector] private Vector3 normal;
         [SerializeField, HideInInspector] private GameObject spawnedPresentation;
 
-        public DiceValue Value => value;
+        public DieValue Value => value;
         public Vector3 Normal => normal;
 
         public string Identifier => identifier;
@@ -28,7 +28,7 @@ namespace Dice
             set => spawnedPresentation = value;
         }
 
-        public DiceFace(Vector3 normal, Vector3 centroid, string identifier)
+        public DieFace(Vector3 normal, Vector3 centroid, string identifier)
         {
             this.normal = normal;
             this.centroid = centroid;

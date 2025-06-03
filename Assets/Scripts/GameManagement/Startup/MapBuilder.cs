@@ -1,7 +1,7 @@
-﻿using Startup.Models;
+﻿using GameManagement.Startup.Models;
 using UnityEngine;
 
-namespace Startup
+namespace GameManagement.Startup
 {
     public sealed class MapBuilder
     {

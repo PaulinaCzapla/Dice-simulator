@@ -1,16 +1,16 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace Dice.Editor
+namespace Die.Editor
 {
-    [CustomEditor(typeof(DiceValuesHolder))]
+    [CustomEditor(typeof(DieValuesHolder))]
     public class DiceValuesHolderEditor: UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
 
-            var valuesHolder = (DiceValuesHolder) target;
+            var valuesHolder = (DieValuesHolder) target;
 
             if (GUILayout.Button("Reimport normals list"))
             {

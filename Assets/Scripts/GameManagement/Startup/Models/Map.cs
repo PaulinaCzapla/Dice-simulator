@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Startup.Models
+namespace GameManagement.Startup.Models
 {
     public sealed class Map
     {

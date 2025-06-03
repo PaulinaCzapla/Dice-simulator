@@ -1,9 +1,9 @@
 using UnityEngine;
 using Utilities;
 
-namespace Dice
+namespace Die
 {
-    public sealed class DiceBoundsLimiter : MonoBehaviour
+    public sealed class DieBoundsLimiter : MonoBehaviour
     {
         [SerializeField] private float boundsOffset = 1f;
 

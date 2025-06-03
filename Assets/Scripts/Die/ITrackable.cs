@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Dice
+namespace Die
 {
     public interface ITrackable
     {

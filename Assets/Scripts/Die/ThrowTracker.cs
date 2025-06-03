@@ -1,18 +1,16 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 
-namespace Dice
+namespace Die
 {
-    public class ThrowTracker : MonoBehaviour
+    public class ThrowTracker //: MonoBehaviour
     {
-        [SerializeField] private float stopThreshold = 0.05f;
-        [SerializeField] private float minStopTime = 0.5f;
+        private const float stopThreshold = 0.05f;
+        private const float minStopTime = 0.5f;
 
         private ITrackable _trackable;
-
         private Vector3 _lastPosition;
         private Quaternion _lastRotation;
-
         private float _accumulatedDistance;
         private float _accumulatedRotation;
         private float _stillTime;
@@ -32,7 +30,7 @@ namespace Dice
             _lastRotation = trackable.Rotation;
         }
 
-        private void FixedUpdate()
+        public void TrackUpdate()
         {
             if (!_tracking || _trackable == null)
                 return;
@@ -57,7 +55,6 @@ namespace Dice
             if (_stillTime >= minStopTime)
             {
                 _tracking = false;
-                Debug.Log("stopped "+ _accumulatedDistance +"  "+_accumulatedRotation);
                 OnThrowFinished.Invoke(_accumulatedDistance, _accumulatedRotation);
             }
         }

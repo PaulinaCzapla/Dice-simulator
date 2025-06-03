@@ -5,6 +5,8 @@ namespace InputManagement
 {
     public class InputHandler : MonoBehaviour
     {
+        public static bool InputBlocked { get; set; }
+        
         private Vector2 _previousMousePosition;
         public UnityEvent OnLeftMouseDown { get; } = new();
         public UnityEvent OnLeftMouseUp { get; } = new();
@@ -17,6 +19,9 @@ namespace InputManagement
 
         private void Update()
         {
+            if(InputBlocked)
+                return;
+            
             MouseScreenPosition = Input.mousePosition;
             DeltaMove = MouseScreenPosition - _previousMousePosition;
             Direction = DeltaMove.normalized;
