@@ -1,6 +1,7 @@
 ﻿using DieSimulation.Interfaces;
 using Interactions;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace DieSimulation.Components
 {
@@ -15,7 +16,7 @@ namespace DieSimulation.Components
         private IResolvable _resolvable;
 
         public IThrowable Throwable => _throwable;
-        public IResolvable Resolvable => _resolvable;
+        public UnityEvent<int?> OnRolled => _resolvable.OnResolved;
         
         private void Awake()
         {

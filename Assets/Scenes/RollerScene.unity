@@ -171,6 +171,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dicePrefabs:
   - {fileID: 7754045326682932934, guid: adad3c567a04f534fb3a8037b9f80bc6, type: 3}
+  - {fileID: 8443638475573724899, guid: 9937ac96aa3af4b408eaa410d69ddb8d, type: 3}
   mapParent: {fileID: 283532850}
   levelData: {fileID: 11400000, guid: 99b34bf1ff50dba459bf414cd885ed6b, type: 2}
 --- !u!1 &283532849

@@ -154,103 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minSurface: 0.1
   normalTolerance: 0.01
-  foundNormals:
-  - normal: {x: -0.52573085, y: -0.85065097, z: 0.00000022731852}
-    vertices:
-    - {x: -0.567602, y: -0.583374, z: 0.542083}
-    - {x: -0.902628, y: -0.376317, z: 0}
-    - {x: -0.041291, y: -0.908652, z: 0.34105}
-    - {x: -0.041291, y: -0.908652, z: -0.34105}
-    - {x: -0.567602, y: -0.583374, z: -0.542083}
-    centroid: {x: -0.42408282, y: -0.67207384, z: 0}
-  - normal: {x: -0.8506511, y: -0.0000002687007, z: 0.52573067}
-    vertices:
-    - {x: -0.588763, y: -0.547471, z: 0.558884}
-    - {x: -0.9184, y: 0.335026, z: 0.02552}
-    - {x: -0.9184, y: -0.343744, z: 0.025519}
-    - {x: -0.375288, y: 0.011413, z: 0.904293}
-    - {x: -0.579015, y: 0.544777, z: 0.574656}
-    centroid: {x: -0.67597324, y: 0.00000019073487, z: 0.41777438}
-  - normal: {x: 0.8506507, y: 0.00000057752106, z: -0.52573127}
-    vertices:
-    - {x: 0.589968, y: -0.544317, z: -0.556934}
-    - {x: 0.9184, y: 0.335026, z: -0.025519}
-    - {x: 0.9184, y: -0.335026, z: -0.02552}
-    - {x: 0.375288, y: 0.011413, z: -0.904293}
-    - {x: 0.579015, y: 0.544777, z: -0.574656}
-    centroid: {x: 0.6762142, y: 0.0023745894, z: -0.41738445}
-  - normal: {x: 0.52573085, y: 0.850651, z: -0.00000019280098}
-    vertices:
-    - {x: 0.041291, y: 0.908652, z: -0.34105}
-    - {x: 0.902628, y: 0.376317, z: 0}
-    - {x: 0.567602, y: 0.583374, z: -0.542083}
-    - {x: 0.041291, y: 0.908652, z: 0.34105}
-    - {x: 0.567602, y: 0.583374, z: 0.542083}
-    centroid: {x: 0.42408282, y: 0.6720738, z: 0}
-  - normal: {x: 0.0000006051096, y: 0.52573174, z: -0.8506504}
-    vertices:
-    - {x: 0.345409, y: 0.029879, z: -0.915706}
-    - {x: 0, y: 0.902628, z: -0.376317}
-    - {x: 0.549136, y: 0.563243, z: -0.586068}
-    - {x: -0.345409, y: 0.029879, z: -0.915706}
-    - {x: -0.549136, y: 0.563243, z: -0.586068}
-    centroid: {x: -0.000000011920929, y: 0.41777438, z: -0.67597294}
-  - normal: {x: 0.52573085, y: -0.850651, z: 0.00000019280098}
-    vertices:
-    - {x: 0.041291, y: -0.908652, z: 0.34105}
-    - {x: 0.902628, y: -0.376317, z: 0}
-    - {x: 0.567602, y: -0.583374, z: 0.542083}
-    - {x: 0.041291, y: -0.908652, z: -0.34105}
-    - {x: 0.567602, y: -0.583374, z: -0.542083}
-    centroid: {x: 0.42408282, y: -0.6720738, z: 0}
-  - normal: {x: 0.85065067, y: 0.00000008080252, z: 0.5257314}
-    vertices:
-    - {x: 0.375288, y: 0.011413, z: 0.904293}
-    - {x: 0.9184, y: 0.335026, z: 0.02552}
-    - {x: 0.579015, y: 0.544777, z: 0.574656}
-    - {x: 0.588763, y: -0.547471, z: 0.558884}
-    - {x: 0.9184, y: -0.343744, z: 0.025519}
-    centroid: {x: 0.67597324, y: 0.00000019669532, z: 0.41777438}
-  - normal: {x: -0.8506511, y: 0.000001232343, z: -0.52573067}
-    vertices:
-    - {x: -0.382342, y: 0.015772, z: -0.892881}
-    - {x: -0.9184, y: 0.335026, z: -0.025519}
-    - {x: -0.583374, y: 0.542083, z: -0.567602}
-    - {x: -0.593122, y: -0.536058, z: -0.551831}
-    - {x: -0.9184, y: -0.335026, z: -0.02552}
-    centroid: {x: -0.67912763, y: 0.0043594064, z: -0.4126706}
-  - normal: {x: -0.52573085, y: 0.850651, z: 0.00000019280098}
-    vertices:
-    - {x: -0.041291, y: 0.908652, z: 0.34105}
-    - {x: -0.902628, y: 0.376317, z: 0}
-    - {x: -0.567602, y: 0.583374, z: 0.542083}
-    - {x: -0.041291, y: 0.908652, z: -0.34105}
-    - {x: -0.567602, y: 0.583374, z: -0.542083}
-    centroid: {x: -0.42408282, y: 0.6720738, z: 0}
-  - normal: {x: 0.00000046970783, y: -0.5257306, z: -0.8506511}
-    vertices:
-    - {x: -0.542083, y: -0.567602, z: -0.583375}
-    - {x: -0.335026, y: -0.025519, z: -0.9184}
-    - {x: -0.015772, y: -0.89288, z: -0.382342}
-    - {x: 0.536059, y: -0.55183, z: -0.593122}
-    - {x: 0.335026, y: -0.025519, z: -0.9184}
-    centroid: {x: -0.0043592034, y: -0.41267, z: -0.6791278}
-  - normal: {x: -0.00000016965511, y: -0.52573115, z: 0.8506508}
-    vertices:
-    - {x: 0.34105, y: -0.041292, z: 0.908652}
-    - {x: 0, y: -0.902628, z: 0.376317}
-    - {x: 0.542083, y: -0.567603, z: 0.583374}
-    - {x: -0.34105, y: -0.041292, z: 0.908652}
-    - {x: -0.542083, y: -0.567603, z: 0.583374}
-    centroid: {x: 0, y: -0.42408362, z: 0.6720738}
-  - normal: {x: -0.0000003306095, y: 0.5257314, z: 0.85065067}
-    vertices:
-    - {x: 0.549136, y: 0.563243, z: 0.586069}
-    - {x: 0, y: 0.902628, z: 0.376317}
-    - {x: 0.345409, y: 0.029879, z: 0.915706}
-    - {x: -0.345409, y: 0.029879, z: 0.915706}
-    - {x: -0.549136, y: 0.563243, z: 0.586069}
-    centroid: {x: -0.000000011920929, y: 0.41777438, z: 0.6759734}
+  foundNormals: []
 --- !u!114 &1905345580810064819
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,91 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   meshNormalsAnalyzer: {fileID: 2340855486627204902}
-  dieFaces:
-  - identifier: face 1
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.42408282, y: -0.67207384, z: 0}
-    normal: {x: -0.52573085, y: -0.85065097, z: 0.00000022731852}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 2
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.67597324, y: 0.00000019073487, z: 0.41777438}
-    normal: {x: -0.8506511, y: -0.0000002687007, z: 0.52573067}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 3
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.6762142, y: 0.0023745894, z: -0.41738445}
-    normal: {x: 0.8506507, y: 0.00000057752106, z: -0.52573127}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 4
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.42408282, y: 0.6720738, z: 0}
-    normal: {x: 0.52573085, y: 0.850651, z: -0.00000019280098}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 5
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.000000011920929, y: 0.41777438, z: -0.67597294}
-    normal: {x: 0.0000006051096, y: 0.52573174, z: -0.8506504}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 6
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.42408282, y: -0.6720738, z: 0}
-    normal: {x: 0.52573085, y: -0.850651, z: 0.00000019280098}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 7
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.67597324, y: 0.00000019669532, z: 0.41777438}
-    normal: {x: 0.85065067, y: 0.00000008080252, z: 0.5257314}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 8
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.67912763, y: 0.0043594064, z: -0.4126706}
-    normal: {x: -0.8506511, y: 0.000001232343, z: -0.52573067}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 9
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.42408282, y: 0.6720738, z: 0}
-    normal: {x: -0.52573085, y: 0.850651, z: 0.00000019280098}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 10
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.0043592034, y: -0.41267, z: -0.6791278}
-    normal: {x: 0.00000046970783, y: -0.5257306, z: -0.8506511}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 11
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0, y: -0.42408362, z: 0.6720738}
-    normal: {x: -0.00000016965511, y: -0.52573115, z: 0.8506508}
-    spawnedPresentationTextText: {fileID: 0}
-  - identifier: face 12
-    faceValue:
-      <Value>k__BackingField: 0
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.000000011920929, y: 0.41777438, z: 0.6759734}
-    normal: {x: -0.0000003306095, y: 0.5257314, z: 0.85065067}
-    spawnedPresentationTextText: {fileID: 0}
+  dieFaces: []
 --- !u!114 &126300185379480438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,7 +193,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3e659506e7c4218851d3f8f66fcd85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dieConfig: {fileID: 11400000, guid: 4d6a97ac44f206e47971c084da3bee74, type: 2}
+  config: {fileID: 11400000, guid: 4d6a97ac44f206e47971c084da3bee74, type: 2}
 --- !u!114 &8750206079667095612
 MonoBehaviour:
   m_ObjectHideFlags: 0

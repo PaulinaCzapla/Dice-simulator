@@ -55,7 +55,7 @@ namespace NormalsAnalyzer
             var normals = mesh.normals;
 
             var normalComparer = new ApproxVector3Comparer(normalTolerance);
-            var normalsToTriangles = new Dictionary<Vector3, List<(Vector3, Vector3, Vector3)>>(normalComparer);
+            var normalsToTriangles = new Dictionary<Vector3, List<Triangle>>(normalComparer);
 
             for (var i = 0; i < triangles.Length; i += 3)
             {
@@ -71,10 +71,10 @@ namespace NormalsAnalyzer
 
                 if (!normalsToTriangles.ContainsKey(avgNormal))
                 {
-                    normalsToTriangles[avgNormal] = new List<(Vector3, Vector3, Vector3)>();
+                    normalsToTriangles[avgNormal] = new List<Triangle>();
                 }
 
-                normalsToTriangles[avgNormal].Add((v0, v1, v2));
+                normalsToTriangles[avgNormal].Add(new Triangle(v0, v1, v2));
             }
 
             foreach (var normalToTriangle in normalsToTriangles)
@@ -83,12 +83,12 @@ namespace NormalsAnalyzer
                 var vertexSet = new HashSet<Vector3>(new ApproxVector3Comparer(normalTolerance));
                 var totalArea = 0f;
 
-                foreach (var (v0, v1, v2) in triangleList)
+                foreach (var triangle in triangleList)
                 {
-                    vertexSet.Add(v0);
-                    vertexSet.Add(v1);
-                    vertexSet.Add(v2);
-                    totalArea += Vector3Utils.CalculateTriangleArea(v0, v1, v2);
+                    vertexSet.Add(triangle.V1);
+                    vertexSet.Add(triangle.V2);
+                    vertexSet.Add(triangle.V3);
+                    totalArea += Vector3Utils.CalculateTriangleArea(triangle.V1, triangle.V2, triangle.V3);
                 }
 
                 if (totalArea >= minSurface)

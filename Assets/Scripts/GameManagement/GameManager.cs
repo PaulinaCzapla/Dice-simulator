@@ -41,7 +41,7 @@ namespace GameManagement
             foreach (var dieProvider in _dieProviders)
             {
                 dieProvider.Throwable.OnThrew.RemoveListener(DieThrew);
-                dieProvider.Resolvable.OnResolved.RemoveListener(DieRolled);
+                dieProvider.OnRolled.RemoveListener(DieRolled);
             }
         }
 
@@ -51,7 +51,7 @@ namespace GameManagement
             foreach (var dieProvider in _dieProviders)
             {
                 dieProvider.Throwable.OnThrew.AddListener(DieThrew);
-                dieProvider.Resolvable.OnResolved.AddListener(DieRolled);
+                dieProvider.OnRolled.AddListener(DieRolled);
             }
         }
 

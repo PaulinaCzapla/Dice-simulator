@@ -13,7 +13,7 @@ namespace DieSimulation.Components
         private const float MAX_MAGNITUDE_FOR_TORQUE = 60f;
 
         [SerializeField] 
-        private DraggableDieConfig dieConfig;
+        private DraggableConfig config;
 
         private DieDragLimiter _dieDragLimiter;
         private Quaternion _initialRotation;
@@ -35,7 +35,7 @@ namespace DieSimulation.Components
         
         public DraggableConfig GetConfig()
         {
-            return dieConfig;
+            return config;
         }
 
         public void StartDrag()
@@ -61,7 +61,7 @@ namespace DieSimulation.Components
                 _mainCamera.WorldToScreenPoint(_rigidbody.position).z);
             var worldPosition = _mainCamera.ScreenToWorldPoint(screenPos);
 
-            var desiredPosition = new Vector3(worldPosition.x, dieConfig.StartDragPosition.y, worldPosition.z);
+            var desiredPosition = new Vector3(worldPosition.x, config.StartDragPosition.y, worldPosition.z);
 
             if (_dieDragLimiter.IsLimitedByWalls(desiredPosition, out var clampedPosition))
             {
@@ -69,7 +69,7 @@ namespace DieSimulation.Components
             }
 
             var toTarget = desiredPosition - _rigidbody.position;
-            _rigidbody.velocity = toTarget * dieConfig.DragSmoothnessMultiplier;
+            _rigidbody.velocity = toTarget * config.DragSmoothnessMultiplier;
         }
 
         private void SetTorque(Vector2 inputVelocity)
@@ -78,18 +78,18 @@ namespace DieSimulation.Components
 
             if (inputVelocity.magnitude < MAX_MAGNITUDE_FOR_TORQUE)
             {
-                targetTorque = dieConfig.TorqueStrengthMultiplier *
+                targetTorque = config.TorqueStrengthMultiplier *
                             (targetTorque.normalized *
                              Mathf.Max(targetTorque.magnitude - MIN_MAGNITUDE_FOR_TORQUE, 0));
             }
             else
             {
-                targetTorque = dieConfig.TorqueStrengthMultiplier *
+                targetTorque = config.TorqueStrengthMultiplier *
                             (_rigidbody.GetAccumulatedTorque().normalized * targetTorque.magnitude);
             }
 
             _smoothedTorque = Vector3.SmoothDamp(_smoothedTorque, targetTorque,
-                ref _torqueVelocity, dieConfig.TorqueSmoothTime);
+                ref _torqueVelocity, config.TorqueSmoothTime);
 
             _rigidbody.AddTorque(_smoothedTorque, ForceMode.Acceleration);
         }

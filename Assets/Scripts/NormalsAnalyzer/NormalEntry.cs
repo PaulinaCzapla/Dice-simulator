@@ -8,11 +8,11 @@ namespace NormalsAnalyzer
     [Serializable]
     public sealed class NormalEntry
     {
-        [ReadOnly] [SerializeField] 
+        [SerializeField, ReadOnly] 
         private Vector3 normal;
-        [HideInInspector] [SerializeField] 
+        [SerializeField, HideInInspector] 
         private List<Vector3> vertices;
-        [HideInInspector] [SerializeField] 
+        [SerializeField, HideInInspector] 
         private Vector3 centroid;
 
         public NormalEntry(Vector3 normal, List<Vector3> vertices)

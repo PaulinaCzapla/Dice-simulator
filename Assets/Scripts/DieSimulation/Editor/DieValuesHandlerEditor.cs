@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DieSimulation.Editor
 {
     [CustomEditor(typeof(DieValuesHandler))]
-    public sealed class DiceValuesHolderEditor: UnityEditor.Editor
+    public sealed class DieValuesHandlerEditor: UnityEditor.Editor
     {
         public override void OnInspectorGUI()
         {
