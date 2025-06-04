@@ -17,7 +17,7 @@ namespace Utilities
         {
             return new Vector3(vector.x - value, vector.y - value, vector.z - value);
         }
-        
+
         public static float CalculateTriangleArea(Vector3 vector0, Vector3 vector1, Vector3 vector2)
         {
             return Vector3.Cross(vector1 - vector0, vector2 - vector0).magnitude * 0.5f;

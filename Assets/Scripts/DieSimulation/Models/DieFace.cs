@@ -1,29 +1,34 @@
 ﻿using System;
 using Attributes;
-using Die.Data;
+using DieSimulation.Data;
+using TMPro;
 using UnityEditor;
 using UnityEngine;
 
-namespace Die
+namespace DieSimulation.Models
 {
     [Serializable]
     public sealed class DieFace
     {
-        [SerializeField, ReadOnly] private string identifier;
-        [SerializeField] private DieFaceValue faceValue;
+        [SerializeField, ReadOnly] 
+        private string identifier;
+        [SerializeField] 
+        private DieFaceValue faceValue;
+        [SerializeField, HideInInspector] 
+        private Vector3 centroid;
+        [SerializeField, HideInInspector] 
+        private Vector3 normal;
+        [SerializeField, HideInInspector] 
+        private TextMeshPro spawnedPresentationTextText;
         
-        [SerializeField, HideInInspector] private Vector3 centroid;
-        [SerializeField, HideInInspector] private Vector3 normal;
-        [SerializeField, HideInInspector] private GameObject spawnedPresentation;
-
         public DieFaceValue FaceValue => faceValue;
         public Vector3 Normal => normal;
         public Vector3 Centroid => centroid;
 
-        public GameObject SpawnedPresentation
+        public TextMeshPro SpawnedPresentationText
         {
-            get => spawnedPresentation;
-            set => spawnedPresentation = value;
+            get => spawnedPresentationTextText;
+            set => spawnedPresentationTextText = value;
         }
 
         public DieFace(Vector3 normal, Vector3 centroid, string identifier)
@@ -37,5 +42,6 @@ namespace Die
         {
             Handles.Label(centroid, identifier);
         }
+        
     }
 }

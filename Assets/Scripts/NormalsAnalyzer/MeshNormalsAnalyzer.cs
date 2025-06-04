@@ -8,19 +8,15 @@ namespace NormalsAnalyzer
     [RequireComponent(typeof(MeshFilter))]
     public sealed class MeshNormalsAnalyzer : MonoBehaviour
     {
-        [Header("Analyze parameters")] 
-        [Tooltip("Minimal surface for given normal.")] 
-        [SerializeField]
+        [Header("Analyze parameters")] [Tooltip("Minimal surface for given normal.")] [SerializeField]
         private float minSurface = 0.1f;
 
-        [Tooltip("Tolerance when comparing normals .")] 
-        [SerializeField]
+        [Tooltip("Tolerance when comparing normals .")] [SerializeField]
         private float normalTolerance = 0.01f;
 
-        [Header("Found normals")] 
-        [SerializeField]
+        [Header("Found normals")] [SerializeField]
         private List<NormalEntry> foundNormals = new();
-        
+
         public List<NormalEntry> FoundNormals => foundNormals;
 
         private void OnDrawGizmosSelected()
@@ -74,7 +70,9 @@ namespace NormalsAnalyzer
                 var avgNormal = ((normals[i0] + normals[i1] + normals[i2]) / 3f).normalized;
 
                 if (!normalsToTriangles.ContainsKey(avgNormal))
+                {
                     normalsToTriangles[avgNormal] = new List<(Vector3, Vector3, Vector3)>();
+                }
 
                 normalsToTriangles[avgNormal].Add((v0, v1, v2));
             }

@@ -2,5 +2,7 @@
 
 namespace Attributes
 {
-    public class ReadOnlyAttribute : PropertyAttribute { }
+    public class ReadOnlyAttribute : PropertyAttribute
+    {
+    }
 }

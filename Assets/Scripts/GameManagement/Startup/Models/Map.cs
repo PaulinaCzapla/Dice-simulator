@@ -1,18 +1,14 @@
-﻿using UnityEngine;
+﻿using DieSimulation.Interfaces;
 
 namespace GameManagement.Startup.Models
 {
     public sealed class Map
     {
-        public GameObject Floor { get; }
-        public GameObject[] Walls { get; }
-        public GameObject Ceiling { get; }
+        public IDieProvider[] Dice { get; }
 
-        public Map(GameObject floor, GameObject[] walls, GameObject ceiling)
+        public Map(IDieProvider[] dice)
         {
-            Floor = floor;
-            Walls = walls;
-            Ceiling = ceiling;
+            Dice = dice;
         }
     }
 }

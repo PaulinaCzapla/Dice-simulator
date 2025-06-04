@@ -9,10 +9,10 @@ namespace InputManagement
         private const string VerticalAxisName = "Mouse Y";
 
         public static bool InputBlocked { get; set; }
-        
+
         public UnityEvent OnLeftMouseDown { get; } = new();
         public UnityEvent OnLeftMouseUp { get; } = new();
-        
+
         public Vector2 MouseScreenPosition => Input.mousePosition;
         public Vector2 MouseVelocity { get; private set; }
 

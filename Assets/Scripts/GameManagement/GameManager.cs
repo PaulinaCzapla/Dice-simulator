@@ -1,118 +1,128 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using Die;
+using DieSimulation.Interfaces;
 using GameManagement.Startup;
 using InputManagement;
 using UI;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace GameManagement
 {
     public sealed class GameManager : MonoBehaviour
     {
-        private const string UNDEFINED_ERROR = "Undefined";
+        private const string UNDEFINED_ERROR = "-";
+        private const string DURING_ROLL = "?";
 
         [SerializeField] private List<Vector3> possibleRollVelocities;
         [SerializeField] private List<Vector3> possibleRollAngularVelocities;
-        [SerializeField] private Bootstrap bootstrap;
+        [SerializeField] private Generator generator;
         [SerializeField] private HudUI hud;
-
-        private List<DieController> _diceOnScene;
-
-        private int _resultsTotal;
-        private int _finishedDiceCounter;
+        
+        private IDieProvider[] _dieProviders;
         private bool _anyFailed;
         private int _diceThrewCount;
+        private int _finishedDiceCounter;
+        private int _resultsTotal;
         private int _resultSum;
-        
+
         private void Awake()
         {
-            bootstrap.BuildMap();
-            hud.UpdateResult(string.Empty);
-            hud.UpdateTotal(string.Empty);
+            var map = generator.BuildMap();
+            _dieProviders = map.Dice;
+
+            hud.SetResultText(string.Empty);
+            hud.SetTotalText(string.Empty);
+
+            Subscribe();
         }
-        
-        private void OnEnable()
+
+        private void OnDestroy()
         {
-            _diceOnScene = FindObjectsOfType<DieController>().ToList();
-            hud.OnRollClicked.AddListener(Roll);
-            foreach (var die in _diceOnScene)
+            hud.OnRollClicked.RemoveListener(Roll);
+            foreach (var dieProvider in _dieProviders)
             {
-                die.OnThrew.AddListener(DieThrew);
-                die.OnDieRollFailed.AddListener(DieRollFailed);
-                die.OnDieRollSuccess.AddListener(DieRollSuccess);
+                dieProvider.Throwable.OnThrew.RemoveListener(DieThrew);
+                dieProvider.Resolvable.OnResolved.RemoveListener(DieRolled);
             }
         }
 
-        private void OnDisable()
+        private void Subscribe()
         {
             hud.OnRollClicked.AddListener(Roll);
-            foreach (var die in _diceOnScene)
+            foreach (var dieProvider in _dieProviders)
             {
-                die.OnThrew.RemoveListener(DieThrew);
-                die.OnDieRollFailed.RemoveListener(DieRollFailed);
-                die.OnDieRollSuccess.RemoveListener(DieRollSuccess);
+                dieProvider.Throwable.OnThrew.AddListener(DieThrew);
+                dieProvider.Resolvable.OnResolved.AddListener(DieRolled);
             }
         }
 
         private void Roll()
         {
-            foreach (var die in _diceOnScene)
+            foreach (var dieProvider in _dieProviders)
             {
-                die.Throwable.Throw(possibleRollVelocities[Random.Range(0, possibleRollVelocities.Count)],
-                    possibleRollAngularVelocities[Random.Range(0, possibleRollAngularVelocities.Count)]);
+                dieProvider.Throwable.ThrowSingle(
+                    possibleRollVelocities[Random.Range(0, possibleRollVelocities.Count)],
+                    possibleRollAngularVelocities[Random.Range(0, possibleRollAngularVelocities.Count)]
+                );
             }
         }
-        
-        private void DieThrew(DieController dieController)
+
+        private void DieThrew()
         {
             InputHandler.InputBlocked = true;
 
             _diceThrewCount++;
-            hud.UpdateResult("?");
+            hud.SetResultText(DURING_ROLL);
         }
 
-        private void DieRollFailed(DieController dieController)
+        private void DieRolled(int? result)
         {
             _finishedDiceCounter++;
-            _anyFailed = true;
-            if (_finishedDiceCounter.Equals(_diceThrewCount))
+
+            if (result.HasValue)
             {
-                FailedResult();
+                DieRollSuccess(result.Value);
+            }
+            else
+            {
+                _anyFailed = true;
+                if (_finishedDiceCounter.Equals(_diceThrewCount))
+                {
+                    SetFailedResult();
+                }
             }
         }
-        private void DieRollSuccess(int faceValue, DieController die)
+
+        private void DieRollSuccess(int faceValue)
         {
-            _finishedDiceCounter++;
             _resultSum += faceValue;
             if (!_finishedDiceCounter.Equals(_diceThrewCount))
             {
                 return;
             }
-            
+
             if (_anyFailed)
             {
-                FailedResult();
+                SetFailedResult();
             }
             else
             {
-                SuccessResult(_resultSum);
+                SetSuccessResult(_resultSum);
             }
         }
 
-        private void FailedResult()
+        private void SetFailedResult()
         {
-            hud.UpdateResult(UNDEFINED_ERROR);
+            hud.SetResultText(UNDEFINED_ERROR);
             PrepareForNextRoll();
+            ResetThrowables();
         }
 
-        private void SuccessResult(int resultSum)
+        private void SetSuccessResult(int resultSum)
         {
             _resultsTotal += resultSum;
 
-            hud.UpdateTotal(_resultsTotal.ToString());
-            hud.UpdateResult(resultSum.ToString());
+            hud.SetTotalText(_resultsTotal.ToString());
+            hud.SetResultText(resultSum.ToString());
 
             PrepareForNextRoll();
         }
@@ -120,15 +130,18 @@ namespace GameManagement
         private void PrepareForNextRoll()
         {
             InputHandler.InputBlocked = false;
-            
+
             _diceThrewCount = 0;
             _resultSum = 0;
             _finishedDiceCounter = 0;
             _anyFailed = false;
-            
-            foreach (var die in _diceOnScene)
+        }
+
+        private void ResetThrowables()
+        {
+            foreach (var die in _dieProviders)
             {
-                die.Throwable.PrepareForThrow();
+                die.Throwable.Reset();
             }
         }
     }

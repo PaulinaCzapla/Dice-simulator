@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Attributes;
 using UnityEngine;
 
 namespace NormalsAnalyzer
@@ -7,25 +8,27 @@ namespace NormalsAnalyzer
     [Serializable]
     public sealed class NormalEntry
     {
-        [Attributes.ReadOnly]
-        [SerializeField]
+        [ReadOnly] [SerializeField] 
         private Vector3 normal;
-        
-        [HideInInspector]
-        [SerializeField]
+        [HideInInspector] [SerializeField] 
         private List<Vector3> vertices;
-        
-        [HideInInspector] 
-        [SerializeField] 
+        [HideInInspector] [SerializeField] 
         private Vector3 centroid;
-        
+
+        public NormalEntry(Vector3 normal, List<Vector3> vertices)
+        {
+            this.normal = normal;
+            this.vertices = vertices;
+            RecalculateCentroid();
+        }
+
         public Vector3 Normal
         {
             get => normal;
             set => normal = value;
         }
-        
-        public List<Vector3> Vertices 
+
+        public List<Vector3> Vertices
         {
             get => vertices;
             set
@@ -36,13 +39,6 @@ namespace NormalsAnalyzer
         }
 
         public Vector3 Centroid => centroid;
-        
-        public NormalEntry(Vector3 normal, List<Vector3> vertices)
-        {
-            this.normal = normal;
-            this.vertices = vertices;
-            RecalculateCentroid();
-        }
 
         private void RecalculateCentroid()
         {
@@ -52,7 +48,7 @@ namespace NormalsAnalyzer
             {
                 centroid += v;
             }
-            
+
             centroid /= Vertices.Count;
         }
 
@@ -62,10 +58,10 @@ namespace NormalsAnalyzer
             {
                 return;
             }
-            
+
             var worldCentroid = transform.TransformPoint(Centroid);
             var worldNormal = transform.TransformDirection(Normal);
-            
+
             Gizmos.DrawSphere(worldCentroid, 0.02f);
             Gizmos.DrawRay(worldCentroid, worldNormal * 0.1f);
         }

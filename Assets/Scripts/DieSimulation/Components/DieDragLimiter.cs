@@ -1,18 +1,18 @@
 using UnityEngine;
 using Utilities;
 
-namespace Die
+namespace DieSimulation.Components
 {
-    public sealed class DieBoundsLimiter : MonoBehaviour
+    public sealed class DieDragLimiter : MonoBehaviour
     {
-        [SerializeField] private float boundsOffset = 1f;
+        [SerializeField] 
+        private float boundsOffset = 1f;
 
         private Bounds _limitBounds;
 
-        public void SetBounds(Bounds environmentBounds)
+        public void Configure(Bounds environmentBounds)
         {
             var environmentBoundsSize = environmentBounds.size;
-
             _limitBounds = new Bounds(environmentBounds.center, environmentBoundsSize.Subtract(boundsOffset));
         }
 

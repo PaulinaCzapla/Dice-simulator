@@ -14,10 +14,11 @@ GameObject:
   - component: {fileID: 5206693937915044402}
   - component: {fileID: 8246525275934727754}
   - component: {fileID: 2340855486627204902}
+  - component: {fileID: 1905345580810064819}
   - component: {fileID: 126300185379480438}
-  - component: {fileID: 6388251758666766512}
-  - component: {fileID: 592939483856858127}
-  - component: {fileID: 8332688300456595221}
+  - component: {fileID: 1123126007343934810}
+  - component: {fileID: 8750206079667095612}
+  - component: {fileID: 7692838430924116351}
   m_Layer: 6
   m_Name: DieBase
   m_TagString: Untagged
@@ -250,6 +251,104 @@ MonoBehaviour:
     - {x: -0.345409, y: 0.029879, z: 0.915706}
     - {x: -0.549136, y: 0.563243, z: 0.586069}
     centroid: {x: -0.000000011920929, y: 0.41777438, z: 0.6759734}
+--- !u!114 &1905345580810064819
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8438707760800728792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45f18c14a1e4663a6297a0e9d491e41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshNormalsAnalyzer: {fileID: 2340855486627204902}
+  dieFaces:
+  - identifier: face 1
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: -0.42408282, y: -0.67207384, z: 0}
+    normal: {x: -0.52573085, y: -0.85065097, z: 0.00000022731852}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 2
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: -0.67597324, y: 0.00000019073487, z: 0.41777438}
+    normal: {x: -0.8506511, y: -0.0000002687007, z: 0.52573067}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 3
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: 0.6762142, y: 0.0023745894, z: -0.41738445}
+    normal: {x: 0.8506507, y: 0.00000057752106, z: -0.52573127}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 4
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: 0.42408282, y: 0.6720738, z: 0}
+    normal: {x: 0.52573085, y: 0.850651, z: -0.00000019280098}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 5
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: -0.000000011920929, y: 0.41777438, z: -0.67597294}
+    normal: {x: 0.0000006051096, y: 0.52573174, z: -0.8506504}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 6
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: 0.42408282, y: -0.6720738, z: 0}
+    normal: {x: 0.52573085, y: -0.850651, z: 0.00000019280098}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 7
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: 0.67597324, y: 0.00000019669532, z: 0.41777438}
+    normal: {x: 0.85065067, y: 0.00000008080252, z: 0.5257314}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 8
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: -0.67912763, y: 0.0043594064, z: -0.4126706}
+    normal: {x: -0.8506511, y: 0.000001232343, z: -0.52573067}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 9
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: -0.42408282, y: 0.6720738, z: 0}
+    normal: {x: -0.52573085, y: 0.850651, z: 0.00000019280098}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 10
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: -0.0043592034, y: -0.41267, z: -0.6791278}
+    normal: {x: 0.00000046970783, y: -0.5257306, z: -0.8506511}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 11
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: 0, y: -0.42408362, z: 0.6720738}
+    normal: {x: -0.00000016965511, y: -0.52573115, z: 0.8506508}
+    spawnedPresentationTextText: {fileID: 0}
+  - identifier: face 12
+    faceValue:
+      <Value>k__BackingField: 0
+      <FontSize>k__BackingField: 5
+    centroid: {x: -0.000000011920929, y: 0.41777438, z: 0.6759734}
+    normal: {x: -0.0000003306095, y: 0.5257314, z: 0.85065067}
+    spawnedPresentationTextText: {fileID: 0}
 --- !u!114 &126300185379480438
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,93 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c06bfda99648929349b7908f2b5aae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  meshNormalsAnalyzer: {fileID: 2340855486627204902}
-  diceFaces:
-  - identifier: face 1
-    faceValue:
-      <Value>k__BackingField: 1
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.42408282, y: -0.67207384, z: 0}
-    normal: {x: -0.52573085, y: -0.85065097, z: 0.00000022731852}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 2
-    faceValue:
-      <Value>k__BackingField: 2
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.67597324, y: 0.00000019073487, z: 0.41777438}
-    normal: {x: -0.8506511, y: -0.0000002687007, z: 0.52573067}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 3
-    faceValue:
-      <Value>k__BackingField: 3
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.6762142, y: 0.0023745894, z: -0.41738445}
-    normal: {x: 0.8506507, y: 0.00000057752106, z: -0.52573127}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 4
-    faceValue:
-      <Value>k__BackingField: 4
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.42408282, y: 0.6720738, z: 0}
-    normal: {x: 0.52573085, y: 0.850651, z: -0.00000019280098}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 5
-    faceValue:
-      <Value>k__BackingField: 5
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.000000011920929, y: 0.41777438, z: -0.67597294}
-    normal: {x: 0.0000006051096, y: 0.52573174, z: -0.8506504}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 6
-    faceValue:
-      <Value>k__BackingField: 6
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.42408282, y: -0.6720738, z: 0}
-    normal: {x: 0.52573085, y: -0.850651, z: 0.00000019280098}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 7
-    faceValue:
-      <Value>k__BackingField: 7
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0.67597324, y: 0.00000019669532, z: 0.41777438}
-    normal: {x: 0.85065067, y: 0.00000008080252, z: 0.5257314}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 8
-    faceValue:
-      <Value>k__BackingField: 8
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.67912763, y: 0.0043594064, z: -0.4126706}
-    normal: {x: -0.8506511, y: 0.000001232343, z: -0.52573067}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 9
-    faceValue:
-      <Value>k__BackingField: 9
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.42408282, y: 0.6720738, z: 0}
-    normal: {x: -0.52573085, y: 0.850651, z: 0.00000019280098}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 10
-    faceValue:
-      <Value>k__BackingField: 10
-      <FontSize>k__BackingField: 5
-    centroid: {x: -0.0043592034, y: -0.41267, z: -0.6791278}
-    normal: {x: 0.00000046970783, y: -0.5257306, z: -0.8506511}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 11
-    faceValue:
-      <Value>k__BackingField: 11
-      <FontSize>k__BackingField: 5
-    centroid: {x: 0, y: -0.42408362, z: 0.6720738}
-    normal: {x: -0.00000016965511, y: -0.52573115, z: 0.8506508}
-    spawnedPresentation: {fileID: 0}
-  - identifier: face 12
-    faceValue:
-      <Value>k__BackingField: 12
-      <FontSize>k__BackingField: 0
-    centroid: {x: -0.000000011920929, y: 0.41777438, z: 0.6759734}
-    normal: {x: -0.0000003306095, y: 0.5257314, z: 0.85065067}
-    spawnedPresentation: {fileID: 0}
---- !u!114 &6388251758666766512
+--- !u!114 &1123126007343934810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -357,12 +370,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 8438707760800728792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f798bcab960f4533aa1ae6a18278108d, type: 3}
+  m_Script: {fileID: 11500000, guid: d3e659506e7c4218851d3f8f66fcd85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  config: {fileID: 11400000, guid: 4d6a97ac44f206e47971c084da3bee74, type: 2}
-  boundsLimiter: {fileID: 592939483856858127}
---- !u!114 &592939483856858127
+  dieConfig: {fileID: 11400000, guid: 4d6a97ac44f206e47971c084da3bee74, type: 2}
+--- !u!114 &8750206079667095612
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -374,8 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ecfc1bd5abe74e40b97191c9ee5a2da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boundsOffset: 1.9
---- !u!114 &8332688300456595221
+  boundsOffset: 1
+--- !u!114 &7692838430924116351
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -384,6 +396,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 8438707760800728792}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8476a001d024482fbce3dd89bb63490a, type: 3}
+  m_Script: {fileID: 11500000, guid: 63ee050f486248ecb428598feeb3efb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

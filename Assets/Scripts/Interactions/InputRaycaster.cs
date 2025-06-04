@@ -3,16 +3,19 @@ using UnityEngine;
 
 namespace Interactions
 {
-    public sealed class DraggableRaycaster : MonoBehaviour
+    public sealed class InputRaycaster : MonoBehaviour
     {
-        [SerializeField] private LayerMask raycastMask;
-        
+        [SerializeField] 
+        private LayerMask raycastMask;
+
         private IDraggable _currentDraggable;
         private InputHandler _inputHandler;
+        private Camera _mainCamera;
 
         private void Awake()
         {
             _inputHandler = FindObjectOfType<InputHandler>();
+            _mainCamera = Camera.main;
             if (_inputHandler == null)
             {
                 enabled = false;
@@ -38,22 +41,25 @@ namespace Interactions
 
         private void OnLeftMouseDown()
         {
-            var ray = Camera.main.ScreenPointToRay(_inputHandler.MouseScreenPosition);
-            if (Physics.Raycast(ray, out var hit, Mathf.Infinity, raycastMask) &&
-                hit.collider.TryGetComponent(out IDraggable selectable))
+            var ray = _mainCamera.ScreenPointToRay(_inputHandler.MouseScreenPosition);
+
+            if (!Physics.Raycast(ray, out var hit, Mathf.Infinity, raycastMask))
             {
-                selectable.StartDrag();
-                _currentDraggable = selectable;
+                return;
+            }
+
+            if (hit.collider.TryGetComponent(out IDraggable draggable))
+            {
+                draggable.StartDrag();
+                _currentDraggable = draggable;
             }
         }
 
         private void OnLeftMouseUp()
         {
-            if (_currentDraggable != null)
-            {
-                _currentDraggable.Drop();
-                _currentDraggable = null;
-            }
+            _currentDraggable?.Drop();
+
+            _currentDraggable = null;
         }
     }
 }

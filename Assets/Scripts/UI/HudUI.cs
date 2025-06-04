@@ -1,5 +1,4 @@
-﻿using System;
-using InputManagement;
+﻿using InputManagement;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -7,13 +6,16 @@ using UnityEngine.UI;
 
 namespace UI
 {
-    public class HudUI : MonoBehaviour
+    public sealed class HudUI : MonoBehaviour
     {
-        [SerializeField] private TextMeshProUGUI resultText;
-        [SerializeField] private TextMeshProUGUI totalText;
-        [SerializeField] private Button rollButton;
+        [SerializeField] 
+        private TextMeshProUGUI resultText;
+        [SerializeField] 
+        private TextMeshProUGUI totalText;
+        [SerializeField] 
+        private Button rollButton;
 
-        public UnityEvent OnRollClicked { get; private set; } = new();
+        public UnityEvent OnRollClicked { get; } = new();
 
         private void OnEnable()
         {
@@ -28,15 +30,17 @@ namespace UI
         private void RollClicked()
         {
             if (!InputHandler.InputBlocked)
+            {
                 OnRollClicked?.Invoke();
+            }
         }
 
-        public void UpdateResult(string result)
+        public void SetResultText(string result)
         {
             resultText.text = result;
         }
 
-        public void UpdateTotal(string total)
+        public void SetTotalText(string total)
         {
             totalText.text = total;
         }
