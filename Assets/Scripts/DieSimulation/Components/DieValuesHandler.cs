@@ -20,6 +20,16 @@ namespace DieSimulation.Components
 
         public IReadOnlyCollection<DieFace> DieFaces => dieFaces;
 
+        private void Awake()
+        {
+            foreach (var die in dieFaces)
+            {
+                if (die.SpawnedPresentationText)
+                    die.SpawnedPresentationText.text = die.FaceValue.Value.ToString();
+            }
+        }
+
+#if UNITY_EDITOR
         private void Reset()
         {
             meshNormalsAnalyzer ??= GetComponent<MeshNormalsAnalyzer>();
@@ -38,16 +48,6 @@ namespace DieSimulation.Components
             dieFaces = dieFaces.GetRange(0, normalsCount);
         }
         
-        private void Awake()
-        {
-            foreach (var die in dieFaces)
-            {
-                if (die.SpawnedPresentationText)
-                    die.SpawnedPresentationText.text = die.FaceValue.Value.ToString();
-            }
-        }
-
-#if UNITY_EDITOR
         public void UpdateNormals()
         {
             if (meshNormalsAnalyzer == null)

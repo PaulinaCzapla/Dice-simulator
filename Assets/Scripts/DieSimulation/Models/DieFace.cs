@@ -40,8 +40,9 @@ namespace DieSimulation.Models
 
         public void OnDrawGizmos()
         {
+#if UNITY_EDITOR
             Handles.Label(centroid, identifier);
+#endif
         }
-        
     }
 }
